@@ -10,3 +10,5 @@ domain_name = 'DOMAIN_NAME'
 agent = Mechanize.new
 
 page = agent.get('http://stackoverflow.com/questions/tagged/ruby')
+
+all_questions = agent.page.parser.css('.summary h3 a')
