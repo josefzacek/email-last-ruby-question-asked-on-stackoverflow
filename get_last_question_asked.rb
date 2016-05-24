@@ -14,3 +14,5 @@ page = agent.get('http://stackoverflow.com/questions/tagged/ruby')
 all_questions = agent.page.parser.css('.summary h3 a')
 
 first_question_link = all_questions.first['href']
+
+page = agent.get(first_question_link)
