@@ -8,3 +8,5 @@ mailgun_client = Mailgun::Client.new 'MAILGUN_API_KEY'
 domain_name = 'DOMAIN_NAME'
 
 agent = Mechanize.new
+
+page = agent.get('http://stackoverflow.com/questions/tagged/ruby')
