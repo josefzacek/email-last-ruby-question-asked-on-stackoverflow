@@ -18,3 +18,5 @@ first_question_link = all_questions.first['href']
 page = agent.get(first_question_link)
 
 last_question_asked = agent.page.parser.css('.post-text').text
+
+last_question_saved = File.read('last_question_saved.txt')
