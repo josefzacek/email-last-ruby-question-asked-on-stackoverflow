@@ -9,13 +9,13 @@ domain_name = 'DOMAIN_NAME'
 
 agent = Mechanize.new
 
-page = agent.get('http://stackoverflow.com/questions/tagged/ruby')
+agent.get('http://stackoverflow.com/questions/tagged/ruby')
 
 all_questions = agent.page.parser.css('.summary h3 a')
 
 first_question_link = all_questions.first['href']
 
-page = agent.get(first_question_link)
+agent.get(first_question_link)
 
 last_question_asked = agent.page.parser.css('.post-text').text
 
@@ -30,7 +30,8 @@ unless last_question_asked.eql? last_question_saved
   new_question_asked = { from: 'ruby@stackoverflow.com',
                          to: 'info@josefzacek.com',
                          cc: 'info@josefzacek.cz',
-                         subject: "#{Time.now.strftime('%d/%m/%Y %H:%M')} - New ruby question added",
+                         subject: "#{Time.now.strftime('%d/%m/%Y %H:%M')}
+                          - New ruby question added",
                          text: "#{last_question_asked}
                          \rhttp://stackoverflow.com#{first_question_link}" }
 
