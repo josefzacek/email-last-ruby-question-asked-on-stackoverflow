@@ -30,7 +30,8 @@ unless last_question_asked.eql? last_question_saved
   new_question_asked = { from: 'ruby@stackoverflow.com',
                          to: 'info@josefzacek.com',
                          cc: 'info@josefzacek.cz',
-                         subject: "#{Time.now.strftime('%d/%m/%Y %H:%M')} - New ruby question added",
+                         subject: "#{Time.now.strftime('%d/%m/%Y %H:%M')}
+                          - New ruby question added",
                          text: "#{last_question_asked}
                          \rhttp://stackoverflow.com#{first_question_link}" }
 
