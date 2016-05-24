@@ -20,3 +20,19 @@ page = agent.get(first_question_link)
 last_question_asked = agent.page.parser.css('.post-text').text
 
 last_question_saved = File.read('last_question_saved.txt')
+
+unless last_question_asked.eql? last_question_saved
+
+  File.open('last_question_saved.txt', 'w') do |file|
+    file.write(last_question_asked)
+  end
+
+  new_question_asked = { from: 'ruby@stackoverflow.com',
+                         to: 'info@josefzacek.com',
+                         cc: 'info@josefzacek.cz',
+                         subject: "#{Time.now.strftime('%d/%m/%Y %H:%M')} - New ruby question added",
+                         text: "#{last_question_asked}
+                         \rhttp://stackoverflow.com#{first_question_link}" }
+
+  mailgun_client.send_message domain_name, new_question_asked
+end
